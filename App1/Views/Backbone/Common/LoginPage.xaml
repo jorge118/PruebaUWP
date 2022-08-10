@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="App1.Views.Backbone.Common.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1.Views.Backbone.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    
+    Background="#6b8bb8">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Padding="10">
+            <Image Source="{x:Bind ViewModel.ImageSource}"
+                   
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Height="400"
+                       Width="400"
+                       Margin="10"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Padding="5,90,5,0">
+
+            <TextBlock Text="Reyma UWP"
+                       Foreground="Black"
+                       FontStyle="Normal"
+                       FontSize="14"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="¡Se parte de la innovación digital!"
+                       Foreground="White"
+                       FontStyle="Normal"
+                       FontSize="14"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+            
+
+            <Button Background="White"
+                    Foreground="Black"
+                    CornerRadius="15"
+                    Content="Iniciar Sesion"
+                    HorizontalAlignment="Center"
+                    Width="200"
+                    Command="{x:Bind ViewModel.LoginCommand}"
+                    Margin="5"/>
+
+            <TextBlock Text="{x:Bind ViewModel.Version}"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       Margin="5"
+                       FontSize="12"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Padding="10,0,10,30">
+
+            
+
+        </StackPanel>
+    </Grid>
+</Page>

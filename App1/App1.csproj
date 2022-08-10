@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{83C1A96A-981C-41D1-9BE8-EF0396814F50}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>App1</RootNamespace>
+    <AssemblyName>App1</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <PackageCertificateKeyFile>App1_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>6.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper">
+      <Version>10.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="IdentityModel.OidcClient">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens">
+      <Version>6.22.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.12</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
+      <Version>7.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Reyma.IdentityService.Claims">
+      <Version>1.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Reyma.IdentityService.Extensions">
+      <Version>1.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Reyma.Utils.Collections.Extensions">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Reyma.Utils.Http">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfGrid.UWP">
+      <Version>19.3.0.59</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfInput.UWP">
+      <Version>19.3.0.59</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-us\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="AppConfiguration\ApplicationEnvironment.cs" />
+    <Compile Include="AppConfiguration\ApplicationVariable.cs" />
+    <Compile Include="AppConfiguration\EnviromentSetup.cs" />
+    <Compile Include="AppConfiguration\EnvironmentManager.cs" />
+    <Compile Include="AppConfiguration\EnvironmentVault.cs" />
+    <Compile Include="AppConfiguration\ServiceLocator.cs" />
+    <Compile Include="AppConfiguration\SetupManager.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile.cs" />
+    <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
+    <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Browser.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controls\RelayCommand.cs" />
+    <Compile Include="Exceptions\AuthServiceInitializationException.cs" />
+    <Compile Include="Exceptions\FriendlyException.cs" />
+    <Compile Include="Extensions\BindableExtensions.cs" />
+    <Compile Include="Extensions\DecoderExtensions.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="Helpers\NavHelper.cs" />
+    <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Models\AuthenticationInfo.cs" />
+    <Compile Include="Models\Base\Bindable.cs" />
+    <Compile Include="Models\Base\ViewParameter.cs" />
+    <Compile Include="Models\Common\EstatusRegistro.cs" />
+    <Compile Include="Models\Common\Mes.cs" />
+    <Compile Include="Models\Common\TipoConcepto.cs" />
+    <Compile Include="Models\Common\ViewRequestType.cs" />
+    <Compile Include="Models\Locals\Backbone\Empresas\EmpresaCorteModel.cs" />
+    <Compile Include="Models\Locals\Backbone\Empresas\EmpresaFormaPagoModel.cs" />
+    <Compile Include="Models\Locals\Backbone\Empresas\EmpresaModel.cs" />
+    <Compile Include="Models\Locals\Finanzas\Turnos\TurnoDetalleModel.cs" />
+    <Compile Include="Models\Locals\Finanzas\Turnos\TurnoFormaPagoModel.cs" />
+    <Compile Include="Models\Locals\Finanzas\Turnos\TurnoModel.cs" />
+    <Compile Include="Models\Requests\Finanzas\Turnos\TurnoDetalleRequest.cs" />
+    <Compile Include="Models\Requests\Finanzas\Turnos\TurnoFormaPagoRequest.cs" />
+    <Compile Include="Models\Requests\Finanzas\Turnos\TurnoRequest.cs" />
+    <Compile Include="Models\Responses\Backbone\Cortes\CorteConceptoResponse.cs" />
+    <Compile Include="Models\Responses\Backbone\Cortes\CorteResponse.cs" />
+    <Compile Include="Models\Requests\Backbone\Empresas\AddCorteToEmpresaRequest.cs" />
+    <Compile Include="Models\Requests\Backbone\Empresas\AddFormaPagoToEmpresaRequest.cs" />
+    <Compile Include="Models\Requests\Backbone\Empresas\EmpresaRequest.cs" />
+    <Compile Include="Models\Requests\Backbone\FormasPago\FormaPagoResponse.cs" />
+    <Compile Include="Models\Responses\Backbone\Empresas\EmpresaCorteResponse.cs" />
+    <Compile Include="Models\Responses\Backbone\Empresas\EmpresaFormaPagoResponse.cs" />
+    <Compile Include="Models\Responses\Backbone\Empresas\EmpresaResponse.cs" />
+    <Compile Include="Models\Responses\Base\BaseModelResponse.cs" />
+    <Compile Include="Models\Responses\Finanzas\Turnos\TurnoDetalleResponse.cs" />
+    <Compile Include="Models\Responses\Finanzas\Turnos\TurnoFormaPagoResponse.cs" />
+    <Compile Include="Models\Responses\Finanzas\Turnos\TurnoResponse.cs" />
+    <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="SecurityConstants.cs" />
+    <Compile Include="Services\ActivationService.cs" />
+    <Compile Include="Activation\DefaultActivationHandler.cs" />
+    <Compile Include="Services\AuthorityOptions.cs" />
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\Base\IQueryDataStore.cs" />
+    <Compile Include="Services\Base\IWriteDataStore.cs" />
+    <Compile Include="Services\DataStores\Backbone\CorteDataStore.cs" />
+    <Compile Include="Services\DataStores\Backbone\EmpresaDataStore.cs" />
+    <Compile Include="Services\DataStores\Finanzas\TurnoDataStore.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\FilePickerService.cs" />
+    <Compile Include="Services\Base\IDataStore.cs" />
+    <Compile Include="Services\HttpClientService.cs" />
+    <Compile Include="Services\Infrastructure\IDialogService.cs" />
+    <Compile Include="Services\Infrastructure\IFilePickerService.cs" />
+    <Compile Include="Services\Infrastructure\IHttpClientService.cs" />
+    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\ThemeSelectorService.cs" />
+    <Compile Include="Services\TokenValidator.cs" />
+    <Compile Include="Services\ViewLifetimeControl.cs" />
+    <Compile Include="Services\WebApiDataStore.cs" />
+    <Compile Include="Services\WindowManagerService.cs" />
+    <Compile Include="Utils\BitmapTools.cs" />
+    <Compile Include="ViewModels\Backbone\Empresas\EmpresaDetailViewModel.cs" />
+    <Compile Include="ViewModels\Backbone\Empresas\EmpresaListViewModel.cs" />
+    <Compile Include="ViewModels\Base\BaseDetailViewModel.cs" />
+    <Compile Include="ViewModels\Base\BaseListViewModel.cs" />
+    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\DetailBaseViewModel.cs" />
+    <Compile Include="ViewModels\Common\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Finanzas\Turnos\TurnoDetailViewModel.cs" />
+    <Compile Include="ViewModels\Finanzas\Turnos\TurnoListViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\Backbone\Common\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Backbone\Empresas\EmpresaDetailPage.xaml.cs">
+      <DependentUpon>EmpresaDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Backbone\Empresas\EmpresaListPage.xaml.cs">
+      <DependentUpon>EmpresaListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Finanzas\Turnos\TurnoDetailPage.xaml.cs">
+      <DependentUpon>TurnoDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Finanzas\Turnos\TurnoListPage.xaml.cs">
+      <DependentUpon>TurnoListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShellPage.xaml.cs">
+      <DependentUpon>ShellPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\_Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\_FontSizes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\_Thickness.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Backbone\Common\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Backbone\Empresas\EmpresaDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Backbone\Empresas\EmpresaListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Finanzas\Turnos\TurnoDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Finanzas\Turnos\TurnoListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\ResourceExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\wallpaper.jpg" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="App1_TemporaryKey.pfx" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Requests\Backbone\Cortes\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
