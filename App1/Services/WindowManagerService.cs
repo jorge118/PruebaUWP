@@ -1,4 +1,5 @@
 ﻿using App1.Models.Base;
+using App1.Models.Responses.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -75,11 +76,8 @@ namespace App1.Services
                 var frame = new Frame();
                 frame.RequestedTheme = ThemeSelectorService.Theme;
 
-                var viewParameter = new ViewParameter
-                {
-                    ViewLifetimeControl = viewControl,
-                    ModelResponse = parameter
-                };
+                var viewParameter = parameter as ViewParameter;
+                viewParameter.ViewLifetimeControl = viewControl;
 
                 frame.Navigate(pageType, viewParameter);
                 Window.Current.Content = frame;

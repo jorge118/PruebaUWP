@@ -18,5 +18,16 @@ namespace App1.Models.Base
         /// 
         /// </summary>
         public object ModelResponse { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Func<object, Task> OnModelCreated { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Func<object, Task> OnModelUpdated { get; set; }
+
     }
 }

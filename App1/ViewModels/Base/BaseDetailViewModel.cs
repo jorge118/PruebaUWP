@@ -8,6 +8,7 @@ using App1.Services;
 using App1.Services.Base;
 using App1.Services.Infrastructure;
 using Autofac;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Navigation;
 
@@ -19,18 +20,23 @@ namespace App1.ViewModels.Base
         {
         }
 
-        public BaseDetailViewModel(Action onViewRequestTypeChanged)
+        public BaseDetailViewModel(Func<TModelResponse, Task> onModelCreated, Func<TModelResponse, Task> onModelUpdated, Action onViewRequestTypeChanged)
         {
+            OnModelCreated = onModelCreated ?? throw new ArgumentNullException(nameof(onModelCreated));
+            OnModelUpdated = onModelUpdated ?? throw new ArgumentNullException(nameof(onModelUpdated));
             OnViewRequestTypeChanged = onViewRequestTypeChanged ?? throw new ArgumentNullException(nameof(onViewRequestTypeChanged));
 
             ViewRequestType = ViewRequestType.Create;
         }
 
 
-        public BaseDetailViewModel(Action onViewRequestTypeChanged, ViewRequestType viewRequestType)
+        public BaseDetailViewModel(TModelResponse model, Func<TModelResponse, Task> onModelCreated, Func<TModelResponse, Task> onModelUpdated, Action onViewRequestTypeChanged, ViewRequestType viewRequestType)
         {
+            OnModelCreated = onModelCreated ?? throw new ArgumentNullException(nameof(onModelCreated));
+            OnModelUpdated = onModelUpdated ?? throw new ArgumentNullException(nameof(onModelUpdated));
             OnViewRequestTypeChanged = onViewRequestTypeChanged ?? throw new ArgumentNullException(nameof(onViewRequestTypeChanged));
-           
+
+            GetAndSetModelData(model , viewRequestType);
         }
 
 
@@ -68,7 +74,10 @@ namespace App1.ViewModels.Base
         /// </summary>
         public abstract ICommand SaveCommand { get; }
 
-        private ViewLifetimeControl ViewLifetimeControl { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ViewLifetimeControl ViewLifetimeControl { get; set; }
 
         /// <summary>
         /// 
@@ -100,11 +109,6 @@ namespace App1.ViewModels.Base
             var parameter = (ViewParameter)e.Parameter;
 
             Initialize(parameter.ViewLifetimeControl);
-
-            if (parameter.ModelResponse != null)
-            {
-                GetAndSetModelData((TModelResponse)parameter.ModelResponse, ViewRequestType.Read);
-            }
         }
 
         public void Initialize(ViewLifetimeControl viewLifetimeControl)
@@ -190,7 +194,7 @@ namespace App1.ViewModels.Base
             if (ViewRequestType == ViewRequestType.Create)
             {
                 Model = await CreateModelWithDataStore(request);
-                //await OnModelCreated(Model);
+                await OnModelCreated(Model);
                 await SetModel(Model);
                 ViewRequestType = ViewRequestType.Read;
             }
@@ -198,7 +202,7 @@ namespace App1.ViewModels.Base
             if (ViewRequestType == ViewRequestType.Update)
             {
                 Model = await UpdateModelWithDataStore(request);
-                //await OnModelUpdated(Model);
+                await OnModelUpdated(Model);
                 await SetModel(Model);
                 ViewRequestType = ViewRequestType.Read;
             }

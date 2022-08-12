@@ -1,4 +1,7 @@
 ﻿using App1.Controls;
+using App1.Helpers;
+using App1.Models.Base;
+using App1.Models.Common;
 using App1.Models.Responses.Base;
 using App1.Services;
 using App1.Services.Base;
@@ -107,31 +110,48 @@ namespace App1.ViewModels.Base
         /// <summary>
         /// 
         /// </summary>
-        protected Func<TResponse, Task> OnModelCreatedDelegate => async (model) => await OnModelCreated(model);
+        protected Func<object, Task> OnModelCreatedDelegate => async (model) => await OnModelCreated(model as TResponse);
 
         /// <summary>
         /// 
         /// </summary>
-        protected Func<TResponse, Task> OnModelUpdatedDelegate => async (model) => await OnModelUpdated(model);
+        protected Func<object, Task> OnModelUpdatedDelegate => async (model) => await OnModelUpdated(model as TResponse);
 
 
         public virtual async Task ItemTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             var dataGrid = sender as SfDataGrid;
 
-            var obj = dataGrid?.SelectedItem as TResponse;
+            var modelResponse = dataGrid?.SelectedItem as TResponse;
 
-            if (obj != null)
+            if (modelResponse == null)
+                return;
+
+            var parameters = new ViewParameter
             {
-                await WindowManagerService.Current.TryShowAsStandaloneAsync($"{Title} Detalle", typeof(TDetailPage), obj);
-              
-                //NavigationService.Frame.Navigate(typeof(TDetailPage), obj);
-            }
+                ModelResponse = modelResponse,
+                OnModelCreated = OnModelCreatedDelegate,
+                OnModelUpdated = OnModelUpdatedDelegate,
+            };
 
-            //return Task.CompletedTask;
+            //var page = ((TDetailPage)Activator.CreateInstance(typeof(TDetailPage), model, ViewRequestType.Read)).GetType();
+
+
+            await WindowManagerService.Current.TryShowAsStandaloneAsync($"{Title} Detalle", typeof(TDetailPage), parameters);
+            //await WindowManagerService.Current.TryShowAsStandaloneAsync($"{Title} Detalle", (TDetailPage)Activator.CreateInstance(Type.GetType(openType)));
         }
 
-        public virtual async Task OnAddNew() => await WindowManagerService.Current.TryShowAsStandaloneAsync("Nuevo Registro", typeof(TDetailPage));
+
+        public virtual async Task OnAddNew()
+        {
+            var parameters = new ViewParameter
+            {
+                OnModelCreated = OnModelCreatedDelegate,
+                OnModelUpdated = OnModelUpdatedDelegate,
+            };
+
+            await WindowManagerService.Current.TryShowAsStandaloneAsync("Nuevo Registro", typeof(TDetailPage), parameters);
+        }
         
 
 
@@ -156,6 +176,8 @@ namespace App1.ViewModels.Base
             var index = Items.FindIndex(x => x.Id == model.Id);
             Items.RemoveAt(index);
             Items.Insert(index, model);
+
+
 
             return Task.CompletedTask;
         }

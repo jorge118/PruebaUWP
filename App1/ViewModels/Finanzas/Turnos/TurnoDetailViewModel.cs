@@ -26,20 +26,19 @@ namespace App1.ViewModels.Finanzas.Turnos
 {
     public sealed class TurnoDetailViewModel : BaseDetailViewModel<TurnoResponse, TurnoModel, TurnoRequest, Guid, TurnoDataStore>
     {
-        public TurnoDetailViewModel(Action onViewRequestTypeChanged) :base(onViewRequestTypeChanged)
+        public TurnoDetailViewModel(Func<TurnoResponse, Task> onModelCreated, Func<TurnoResponse, Task> onModelUpdated,Action onViewRequestTypeChanged) :base(onModelCreated,onModelUpdated,onViewRequestTypeChanged)
         {
             LocalModel.Detalles = new ObservableCollection<TurnoDetalleModel>();
             LocalModel.FormasPago = new ObservableCollection<TurnoFormaPagoModel>();
             IsModeCreate = true;
             IsEnableAction = true;
 
-            if (ViewRequestType == ViewRequestType.Create)
-                Task.WaitAll(Task.Run(async () => await LoadElements()));
+            Task.WaitAll(Task.Run(async () => await LoadElements()));
 
             SetOnViewRequestTypeChanged(onViewRequestTypeChanged);
         }
 
-        public TurnoDetailViewModel(Action onViewRequestTypeChanged, ViewRequestType viewRequestType) :base(onViewRequestTypeChanged, viewRequestType)
+        public TurnoDetailViewModel(TurnoResponse model, Func<TurnoResponse, Task> onModelCreated, Func<TurnoResponse, Task> onModelUpdated, Action onViewRequestTypeChanged, ViewRequestType viewRequestType) :base(model, onModelCreated, onModelUpdated,onViewRequestTypeChanged, viewRequestType)
         {
             SetOnViewRequestTypeChanged(onViewRequestTypeChanged);
         }
@@ -175,14 +174,6 @@ namespace App1.ViewModels.Finanzas.Turnos
 
             //var variableSistema = new VariableSistemaResponse();
 
-            //Task.WaitAll(Task.Run(async () =>
-            //{
-            //    await ExecutingBusy(async () =>
-            //    {
-            //        empresas = await EmpresaDataStore.GetAll();
-            //    });
-            //}));
-
             await Task.Run(async () =>
             {
                 await ExecutingBusy(async () =>
@@ -191,7 +182,6 @@ namespace App1.ViewModels.Finanzas.Turnos
                 });
             });
 
-            //empresas = await EmpresaDataStore.GetAll();
 
             IsLoading = false;
 

@@ -1,11 +1,13 @@
 ﻿using App1.Models.Base;
 using App1.Models.Common;
+using App1.Models.Responses.Finanzas.Turnos;
 using App1.ViewModels.Finanzas.Turnos;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -34,14 +36,27 @@ namespace App1.Views.Finanzas.Turnos
         public TurnoDetailPage()
         {
             this.InitializeComponent();
-            DataContext = ViewModel = new TurnoDetailViewModel(CustomizeToolBar);
+            DataContext = ViewModel;
+            //DataContext = ViewModel = new TurnoDetailViewModel(CustomizeToolBar);
+            //BuildToolbarItems();
+        }
+
+        //public TurnoDetailPage(TurnoResponse model, ViewRequestType viewRequestType = ViewRequestType.Update)
+        //{
+        //    this.InitializeComponent();
+        //    DataContext = ViewModel = new TurnoDetailViewModel(model, CustomizeToolBar, viewRequestType);
+        //    BuildToolbarItems();
+        //}
+
+        public void Init(Func<TurnoResponse, Task> onModelCreated, Func<TurnoResponse, Task> onModelUpdated)
+        {
+            DataContext = ViewModel = new TurnoDetailViewModel(onModelCreated, onModelUpdated, CustomizeToolBar);
             BuildToolbarItems();
         }
 
-        public TurnoDetailPage(ViewRequestType viewRequestType = ViewRequestType.Update)
+        public void Init(TurnoResponse model, Func<TurnoResponse, Task> onModelCreated, Func<TurnoResponse, Task> onModelUpdated, ViewRequestType viewRequestType = ViewRequestType.Update)
         {
-            this.InitializeComponent();
-            DataContext = ViewModel = new TurnoDetailViewModel(CustomizeToolBar, viewRequestType);
+            DataContext = ViewModel = new TurnoDetailViewModel(model,onModelCreated, onModelUpdated, CustomizeToolBar, viewRequestType);
             BuildToolbarItems();
         }
 
@@ -51,8 +66,10 @@ namespace App1.Views.Finanzas.Turnos
             base.OnNavigatedTo(e);
             var parameter = (ViewParameter)e.Parameter;
 
-            if (parameter.ModelResponse != null)
-                DataContext = ViewModel = new TurnoDetailViewModel(CustomizeToolBar, ViewRequestType.Read);
+            if (parameter?.ModelResponse != null)
+                Init((TurnoResponse)parameter.ModelResponse, parameter?.OnModelCreated, parameter?.OnModelUpdated, ViewRequestType.Read);
+            else
+                Init(parameter?.OnModelCreated, parameter?.OnModelUpdated);
 
             ViewModel.OnNavigatedTo(e);
             CustomizeToolBar();
