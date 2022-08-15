@@ -14,6 +14,7 @@ using Syncfusion.UI.Xaml.Grid;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,9 +32,14 @@ namespace App1.ViewModels.Base
         public BaseListViewModel()
         {
             Items = new ObservableCollection<TResponse>();
+            Dispatcher = new DispatcherManager(Constants.ViewId);
             InvokeGetModelsOnLoad();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public DispatcherManager Dispatcher { get; set; }
 
         /// <summary>
         /// 
@@ -110,12 +116,12 @@ namespace App1.ViewModels.Base
         /// <summary>
         /// 
         /// </summary>
-        protected Func<object, Task> OnModelCreatedDelegate => async (model) => await OnModelCreated(model as TResponse);
+        protected Func<object, Task> OnModelCreatedDelegate => async (model) => await Dispatcher.AwaitableRunAsync(async () => { await OnModelCreated(model as TResponse); });
 
         /// <summary>
         /// 
         /// </summary>
-        protected Func<object, Task> OnModelUpdatedDelegate => async (model) => await OnModelUpdated(model as TResponse);
+        protected Func<object, Task> OnModelUpdatedDelegate => async (model) => await Dispatcher.AwaitableRunAsync( async () => {  await OnModelUpdated(model as TResponse); });
 
 
         public virtual async Task ItemTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -136,9 +142,12 @@ namespace App1.ViewModels.Base
 
             //var page = ((TDetailPage)Activator.CreateInstance(typeof(TDetailPage), model, ViewRequestType.Read)).GetType();
 
+            Debug.WriteLine("Inicia la llamada al servicio para abrir una nueva ventana");
 
             await WindowManagerService.Current.TryShowAsStandaloneAsync($"{Title} Detalle", typeof(TDetailPage), parameters);
             //await WindowManagerService.Current.TryShowAsStandaloneAsync($"{Title} Detalle", (TDetailPage)Activator.CreateInstance(Type.GetType(openType)));
+
+            Debug.WriteLine("Termina la llamada al servicio para abrir una nueva venta");
         }
 
 
@@ -176,8 +185,6 @@ namespace App1.ViewModels.Base
             var index = Items.FindIndex(x => x.Id == model.Id);
             Items.RemoveAt(index);
             Items.Insert(index, model);
-
-
 
             return Task.CompletedTask;
         }

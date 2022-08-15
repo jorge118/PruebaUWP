@@ -214,7 +214,6 @@
     <Compile Include="Models\Responses\Finanzas\Turnos\TurnoDetalleResponse.cs" />
     <Compile Include="Models\Responses\Finanzas\Turnos\TurnoFormaPagoResponse.cs" />
     <Compile Include="Models\Responses\Finanzas\Turnos\TurnoResponse.cs" />
-    <Compile Include="Models\Result.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="SecurityConstants.cs" />
     <Compile Include="Services\ActivationService.cs" />
@@ -227,6 +226,7 @@
     <Compile Include="Services\DataStores\Backbone\EmpresaDataStore.cs" />
     <Compile Include="Services\DataStores\Finanzas\TurnoDataStore.cs" />
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\DispatcherManager.cs" />
     <Compile Include="Services\FilePickerService.cs" />
     <Compile Include="Services\Base\IDataStore.cs" />
     <Compile Include="Services\HttpClientService.cs" />

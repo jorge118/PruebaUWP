@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using App1.Models.Base;
@@ -10,6 +11,7 @@ using App1.Services.Infrastructure;
 using Autofac;
 using Windows.System;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Navigation;
 
 namespace App1.ViewModels.Base
@@ -88,8 +90,8 @@ namespace App1.ViewModels.Base
                 return false;
 
             // TODO: Implement for UWP
-            //if (await Dialog.ShowMessage("¿Desea descartar los cambios?", "Confirmar", "Si", "No"))
-            //    return false;
+            if (await Dialog.ShowAsync("¿Desea descartar los cambios?", "Confirmar", "Si", "No"))
+                return false;
 
             return true;
         };
@@ -107,7 +109,7 @@ namespace App1.ViewModels.Base
         public virtual void OnNavigatedTo(NavigationEventArgs e)
         {
             var parameter = (ViewParameter)e.Parameter;
-
+            Debug.WriteLine("Inicializa el view life en el detail view model");
             Initialize(parameter.ViewLifetimeControl);
         }
 
@@ -189,7 +191,7 @@ namespace App1.ViewModels.Base
         protected virtual async Task OnSave()
         {
             ValidateModel();
-            var request = CreateRequestForDataStore();
+            var request = CreateRequestForDataStore();            
 
             if (ViewRequestType == ViewRequestType.Create)
             {

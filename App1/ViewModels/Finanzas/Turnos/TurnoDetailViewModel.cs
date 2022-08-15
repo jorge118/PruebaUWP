@@ -256,7 +256,7 @@ namespace App1.ViewModels.Finanzas.Turnos
 
                 IsEnableAction = ViewRequestType == ViewRequestType.Create || ViewRequestType == ViewRequestType.Update;
 
-                //await OnModelUpdated(Model);
+                await OnModelUpdated(Model);
             };
         }
 

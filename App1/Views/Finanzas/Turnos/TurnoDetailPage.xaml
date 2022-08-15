@@ -80,11 +80,11 @@
 
                             <syncfusion:GridNumericColumn HeaderText="Valor"
                                                           MappingName="Valor"
-                                                          Width="70"
+                                                          Width="80"
                                                           ParsingMode="Decimal"
+                                                          AllowNullInput="False"
                                                           TextAlignment="End"
-                                                          AllowFocus="True"
-                                                          MaximumNumberDecimalDigits="2"/>
+                                                          AllowFocus="True"/>
              
 
                             <syncfusion:GridTemplateColumn MappingName="Concepto" 
@@ -128,12 +128,11 @@
 
                             <syncfusion:GridNumericColumn HeaderText="Valor"
                                                           MappingName="Importe"
-                                                          Width="70"
+                                                          Width="80"
                                                           TextAlignment="End"
                                                           ParsingMode="Decimal"
                                                           AllowFocus="True"
-                                                          AllowNullInput="False"
-                                                          MaximumNumberDecimalDigits="2"/>
+                                                          AllowNullInput="False"/>
 
                            
                             <syncfusion:GridTemplateColumn MappingName="Concepto" 

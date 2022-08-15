@@ -1,8 +1,11 @@
 ﻿using App1.Models.Base;
 using App1.Models.Responses.Base;
+using App1.Services.Infrastructure;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,7 +38,7 @@ namespace App1.Services
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                MainViewId = ApplicationView.GetForCurrentView().Id;
+                MainViewId = Constants.ViewId = ApplicationView.GetForCurrentView().Id;
                 MainDispatcher = Window.Current.Dispatcher;
             });
         }
@@ -44,11 +47,11 @@ namespace App1.Services
         // You can use the resulting ViewLifeTileControl to interact with the new window.
         public async Task<ViewLifetimeControl> TryShowAsStandaloneAsync(string windowTitle, Type pageType, object parameter = null)
         {
-            ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType , parameter);
-            SecondaryViews.Add(viewControl);
+            ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType , parameter);        
+            SecondaryViews.Add(viewControl);       
             viewControl.StartViewInUse();
-            var id =  ApplicationView.GetForCurrentView().Id;
-            await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.Default, ApplicationView.GetForCurrentView().Id, ViewSizePreference.Default);
+            //Constants.ViewId = ApplicationView.GetForCurrentView().Id;
+            await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id,ViewSizePreference.Default,ApplicationView.GetForCurrentView().Id, ViewSizePreference.Default);          
             viewControl.StopViewInUse();
             return viewControl;
         }
@@ -68,11 +71,11 @@ namespace App1.Services
         {
             ViewLifetimeControl viewControl = null;
 
-            await CoreApplication.CreateNewView().Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            await CoreApplication.CreateNewView().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 viewControl = ViewLifetimeControl.CreateForCurrentView();
                 viewControl.Title = windowTitle;
-                viewControl.StartViewInUse();
+                viewControl?.StartViewInUse();
                 var frame = new Frame();
                 frame.RequestedTheme = ThemeSelectorService.Theme;
 

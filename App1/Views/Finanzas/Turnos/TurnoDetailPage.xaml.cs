@@ -4,6 +4,7 @@ using App1.Models.Responses.Finanzas.Turnos;
 using App1.ViewModels.Finanzas.Turnos;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -36,20 +37,12 @@ namespace App1.Views.Finanzas.Turnos
         public TurnoDetailPage()
         {
             this.InitializeComponent();
-            DataContext = ViewModel;
-            //DataContext = ViewModel = new TurnoDetailViewModel(CustomizeToolBar);
-            //BuildToolbarItems();
+            DataContext = ViewModel;           
         }
-
-        //public TurnoDetailPage(TurnoResponse model, ViewRequestType viewRequestType = ViewRequestType.Update)
-        //{
-        //    this.InitializeComponent();
-        //    DataContext = ViewModel = new TurnoDetailViewModel(model, CustomizeToolBar, viewRequestType);
-        //    BuildToolbarItems();
-        //}
 
         public void Init(Func<TurnoResponse, Task> onModelCreated, Func<TurnoResponse, Task> onModelUpdated)
         {
+            Debug.WriteLine("Inicializa el ViewModel");
             DataContext = ViewModel = new TurnoDetailViewModel(onModelCreated, onModelUpdated, CustomizeToolBar);
             BuildToolbarItems();
         }
@@ -64,13 +57,17 @@ namespace App1.Views.Finanzas.Turnos
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            
+            Debug.WriteLine("Recibe los parametros");
             var parameter = (ViewParameter)e.Parameter;
 
+            Debug.WriteLine("Valida los parametros");
             if (parameter?.ModelResponse != null)
                 Init((TurnoResponse)parameter.ModelResponse, parameter?.OnModelCreated, parameter?.OnModelUpdated, ViewRequestType.Read);
             else
                 Init(parameter?.OnModelCreated, parameter?.OnModelUpdated);
 
+            Debug.WriteLine("Ejecuta el navigate del viewmodel");
             ViewModel.OnNavigatedTo(e);
             CustomizeToolBar();
         }

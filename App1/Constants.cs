@@ -56,5 +56,7 @@ namespace App1
         public static string TurnoDiasCrearPermitidos = "DIASPERCREATURN";
 
         public const decimal IVA = 0.16M;
+
+        public static int ViewId { get; set; }
     }
 }
